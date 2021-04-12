@@ -1,0 +1,48 @@
+@mixin page-base($padding: 60px 40px) {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: $padding;
+
+  @media screen and (max-width: $width-pc-small) {
+    min-height: calc(var(--vh, 1vh) * 100);
+    padding: 30px 25px;
+  }
+}
+
+@mixin input-base {
+  display: block;
+  width: 100%;
+  border: solid 2px $color-border-primary;
+  border-radius: 5px;
+  height: 40px;
+  background-color: $color-bg-primary;
+}
+
+@mixin pulldown {
+  @include input-base;
+
+  padding: 0 10px;
+}
+
+@mixin textarea {
+  @include input-base;
+
+  height: 120px;
+  padding: 8px 5px;
+  line-height: 20px;
+  min-height: 80px;
+  resize: vertical;
+}
+
+@mixin button {
+  border: none;
+  border-radius: 3px;
+  padding: 10px 30px;
+  width: 100%;
+  background-color: $color-dark-bg-primary;
+  color: $color-dark-text-primary;
+  cursor: pointer;
+}
