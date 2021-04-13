@@ -1,7 +1,7 @@
 <template lang="pug">
-.heading
-  img.heading__icon(:src='icon')
-  p.heading__text: slot
+.heading(:class='{ center: center }')
+  img.heading__icon(v-if='icon', :src='icon')
+  p.heading__text(:class='{ "has-icon": icon }'): slot
 </template>
 
 <script lang="ts">
@@ -9,8 +9,11 @@ import { Vue, Component, Prop } from 'nuxt-property-decorator'
 
 @Component({})
 export default class Heading extends Vue {
-  @Prop({ default: '~/assets/image/logo.svg' })
+  @Prop()
   icon?: string
+
+  @Prop({ default: false })
+  center?: boolean
 }
 </script>
 
@@ -18,19 +21,36 @@ export default class Heading extends Vue {
 .heading {
   display: block;
 
+  &.center {
+    text-align: center;
+  }
+
   &__icon {
     display: inline-block;
     height: 60px;
     object-fit: contain;
+
+    @media screen and (max-width: $width-tablet-small) {
+      display: block;
+      margin: 0 auto;
+    }
   }
 
   &__text {
     display: inline-block;
     vertical-align: top;
-    padding-left: 10px;
     line-height: 60px;
     font-size: 1.4rem;
     font-weight: $weight-medium;
+
+    &.has-icon {
+      padding-left: 10px;
+    }
+
+    @media screen and (max-width: $width-tablet-small) {
+      display: block;
+      margin: 0 auto;
+    }
   }
 }
 </style>

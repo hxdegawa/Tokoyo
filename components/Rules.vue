@@ -1,13 +1,36 @@
 <template lang="pug">
 .rules
-  heading(:icon='require("~/assets/image/sunrise.svg")') トコヨのルール
-  .rules__block
-    h3 ゲーム
-    ul
-      li hi
-      li hi
-      li hi
-      li hi
+  heading.rules__heading(:icon='require("~/assets/image/sunrise.svg")' :center="true") トコヨでのきまりごと。
+  .rules__wrapper
+    .rules__block
+      .rules__block__heading
+        img(src='~/assets/image/samurai.svg')
+        h3 ゲームをするとき
+
+      ul
+        li 穏やかに戯れるべし。
+        li 初心者に優しくすべし。
+        li 雰囲気を大切にすべし。
+        li 楽んで勝利を目指すべし。
+
+    .rules__block
+      .rules__block__heading
+        img(src='~/assets/image/yacho.svg')
+        h3 募集をするとき
+
+      ul
+        li 極力お初の人を誘うべし。
+        li マウントをとるべからず。
+        li ランクにこだわるべからず。
+
+    .rules__block
+      .rules__block__heading
+        img(src='~/assets/image/matsushima.svg')
+        h3 雑談をするとき
+
+      ul
+        li 政治の話題は避けるべし。
+        li 出会い厨になるべからず。
 </template>
 
 <script lang="ts">
@@ -27,8 +50,52 @@ export default class Rules extends Vue {}
 .rules {
   padding: 30px 20px;
 
+  &__heading {
+    margin: 0 auto;
+  }
+
+  &__wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 60px 0 0 0;
+    gap: 30px;
+
+    @media screen and (max-width: $width-tablet-large) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+    }
+
+    @media screen and (max-width: $width-tablet-small) {
+      grid-template-columns: repeat(1, 1fr);
+      gap: 60px;
+    }
+  }
+
   &__block {
-    padding: 40px 0 0 0;
+    &__heading {
+      display: block;
+
+      img {
+        height: 30px;
+        object-fit: contain;
+      }
+
+      h3 {
+        display: inline-block;
+        vertical-align: top;
+        line-height: 30px;
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+        padding-left: 10px;
+      }
+    }
+
+    ul {
+      li {
+        margin-bottom: 10px;
+        font-size: 1rem;
+      }
+    }
   }
 }
 </style>
