@@ -1,13 +1,13 @@
 <template lang="pug">
 .landing
-  section.landing__top
+  section.landing__top#top
     logo
     indicator
 
-  section.landing__introduce
+  section.landing__introduce#intro
     introduce
 
-  section.landing__rule
+  section.landing__rule#rules
     rules
 </template>
 
