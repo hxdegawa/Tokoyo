@@ -1,6 +1,9 @@
 <template lang="pug">
 .rules
-  heading.rules__heading(:icon='require("~/assets/image/sunrise.svg")' :center="true") トコヨでのきまりごと。
+  heading.rules__heading(
+    :icon='require("~/assets/image/sunrise.svg")',
+    :center='true'
+  ) トコヨでのきまりごと。
   .rules__wrapper
     .rules__block
       .rules__block__heading
@@ -60,6 +63,14 @@ export default class Rules extends Vue {}
     padding: 60px 0 0 0;
     gap: 30px;
 
+    @media screen and (min-width: $width-tablet-large) {
+      @for $i from 1 to 4 {
+        .rules__block:nth-of-type(#{$i}) {
+          margin-top: 60px - 20px * $i;
+        }
+      }
+    }
+
     @media screen and (max-width: $width-tablet-large) {
       grid-template-columns: repeat(2, 1fr);
       gap: 40px;
@@ -72,8 +83,33 @@ export default class Rules extends Vue {}
   }
 
   &__block {
+    position: relative;
+    padding: 20px;
+
+    &:nth-of-type(2) {
+      &::before {
+        content: '';
+        z-index: 1;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, calc(-50% - 25px)) rotateZ(-7.5deg);
+        width: 120vw;
+        height: 300px;
+        background-color: white;
+        mix-blend-mode: luminosity;
+
+        @media screen and (max-width: $width-tablet-small) {
+          transform: translate(-50%, calc(-50% - 5px)) rotateZ(-7.5deg);
+          height: 240px;
+        }
+      }
+    }
+
     &__heading {
+      position: relative;
       display: block;
+      z-index: 2;
 
       img {
         height: 30px;
@@ -91,6 +127,9 @@ export default class Rules extends Vue {}
     }
 
     ul {
+      position: relative;
+      z-index: 2;
+
       li {
         margin-bottom: 10px;
         font-size: 1rem;

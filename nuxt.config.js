@@ -1,3 +1,6 @@
+import { config } from 'dotenv'
+config()
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -29,7 +32,7 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: ['~/plugins/repository.ts'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -62,7 +65,21 @@ export default {
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    proxy: true,
+  },
+
+  env: {
+    baseUrl: process.env.BASE_URL,
+  },
+
+  proxy: {
+    '/discord/': {
+      target: `${process.env.BASE_URL}`,
+      pathRewrite: { '^/discord/': '' },
+      logLevel: 'debug',
+    },
+  },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {

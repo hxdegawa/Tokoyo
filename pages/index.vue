@@ -1,14 +1,17 @@
 <template lang="pug">
 .landing
-  section.landing__top#top
+  section#top.landing__top
     logo
     indicator
 
-  section.landing__introduce#intro
+  section#intro.landing__introduce
     introduce
 
-  section.landing__rule#rules
+  section#rules.landing__rule
     rules
+
+  section#info.landing__info
+    members
 </template>
 
 <script lang="ts">
@@ -18,6 +21,7 @@ import Logo from '~/components/Logo.vue'
 import Indicator from '~/components/ScrollIndicator.vue'
 import Introduce from '~/components/Introduce.vue'
 import Rules from '~/components/Rules.vue'
+import Members from '~/components/Members.vue'
 
 @Component({
   components: {
@@ -25,6 +29,7 @@ import Rules from '~/components/Rules.vue'
     Introduce,
     Indicator,
     Rules,
+    Members,
   },
 })
 export default class IndexPage extends Vue {}
@@ -35,6 +40,7 @@ export default class IndexPage extends Vue {}
   section {
     position: relative;
     min-height: calc(var(--vh, 1vh) * 100);
+    overflow-x: hidden;
   }
 
   &__top {
@@ -53,6 +59,13 @@ export default class IndexPage extends Vue {}
 
   &__rule {
     background-color: $color-bg-secondary;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__info {
+    background-color: $color-bg-primary;
     display: flex;
     justify-content: center;
     align-items: center;

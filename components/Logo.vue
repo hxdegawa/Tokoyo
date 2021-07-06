@@ -12,7 +12,7 @@ import { Vue, Component } from 'nuxt-property-decorator'
 export default class Logo extends Vue {}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .logo {
   max-width: 300px;
 
